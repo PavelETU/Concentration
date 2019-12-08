@@ -63,4 +63,20 @@ class GameViewModel {
         thirdBtnPicture = "Backframe"
         fourthBtnPicture = "Backframe"
     }
+    
+    func onFirstButtonClick() {
+        firstBtnPicture = "CherryImage"
+    }
+    
+    func onSecondButtonClick() {
+        secondBtnPicture = "CherryImage"
+    }
+    
+    func onThirdButtonClick() {
+        thirdBtnPicture = "CherryImage"
+    }
+    
+    func onFourthButtonClick() {
+        fourthBtnPicture = "CherryImage"
+    }
 }

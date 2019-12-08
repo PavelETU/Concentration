@@ -23,9 +23,16 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PgI-pC-YSk">
                                                 <rect key="frame" x="0.0" y="0.0" width="140" height="220"/>
+                                                <connections>
+                                                    <action selector="onFirstBtnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tYm-Ab-E2H"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6K-Hp-FeT">
                                                 <rect key="frame" x="140" y="0.0" width="140" height="220"/>
+                                                <connections>
+                                                    <action selector="onFirstBtnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tZG-Vt-6xw"/>
+                                                    <action selector="onSecondBtnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="agc-Yj-rDu"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -34,9 +41,15 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cd9-Yw-dVc">
                                                 <rect key="frame" x="0.0" y="0.0" width="140" height="220"/>
+                                                <connections>
+                                                    <action selector="onThirdBtnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zpy-fb-rxK"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ppr-ME-BSX">
                                                 <rect key="frame" x="140" y="0.0" width="140" height="220"/>
+                                                <connections>
+                                                    <action selector="onFourthBtnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g76-rv-hu9"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>

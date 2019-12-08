@@ -31,11 +31,26 @@ class MainViewController: UIViewController {
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = GameViewModel()
         viewModel.startGame()
+    }
+    
+    @IBAction func onFirstBtnClick(_ sender: Any) {
+        viewModel.onFirstButtonClick()
+    }
+    
+    @IBAction func onSecondBtnClick(_ sender: Any) {
+        viewModel.onSecondButtonClick()
+    }
+    
+    @IBAction func onThirdBtnClick(_ sender: Any) {
+        viewModel.onThirdButtonClick()
+    }
+    
+    @IBAction func onFourthBtnClick(_ sender: Any) {
+        viewModel.onFourthButtonClick()
     }
 }
 
