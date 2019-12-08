@@ -15,6 +15,7 @@
 		0A081E98239C3652009A79AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A081E96239C3652009A79AC /* LaunchScreen.storyboard */; };
 		0A081EA3239C3652009A79AC /* ConcentrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A081EA2239C3652009A79AC /* ConcentrationTests.swift */; };
 		0A081EAE239C3652009A79AC /* ConcentrationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A081EAD239C3652009A79AC /* ConcentrationUITests.swift */; };
+		0A081EBC239C7282009A79AC /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A081EBB239C7282009A79AC /* GameViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		0A081EA9239C3652009A79AC /* ConcentrationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConcentrationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A081EAD239C3652009A79AC /* ConcentrationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcentrationUITests.swift; sourceTree = "<group>"; };
 		0A081EAF239C3652009A79AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A081EBB239C7282009A79AC /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				0A081E94239C3652009A79AC /* Assets.xcassets */,
 				0A081E96239C3652009A79AC /* LaunchScreen.storyboard */,
 				0A081E99239C3652009A79AC /* Info.plist */,
+				0A081EBB239C7282009A79AC /* GameViewModel.swift */,
 			);
 			path = Concentration;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A081EBC239C7282009A79AC /* GameViewModel.swift in Sources */,
 				0A081E90239C364F009A79AC /* MainViewController.swift in Sources */,
 				0A081E8C239C364F009A79AC /* AppDelegate.swift in Sources */,
 				0A081E8E239C364F009A79AC /* SceneDelegate.swift in Sources */,

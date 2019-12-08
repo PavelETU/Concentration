@@ -14,12 +14,28 @@ class MainViewController: UIViewController {
     @IBOutlet weak var thirdBtn: UIButton!
     @IBOutlet weak var fourthBtn: UIButton!
     
+    var viewModel: GameViewModel! {
+        didSet {
+            viewModel.firstBtnPictureCallback = { [weak self] assetsFileName in
+                self?.firstBtn.setBackgroundImage(UIImage(named: assetsFileName), for: UIControl.State.normal)
+            }
+            viewModel.secondBtnPictureCallback = { [weak self] assetsFileName in
+                self?.secondBtn.setBackgroundImage(UIImage(named: assetsFileName), for: UIControl.State.normal)
+            }
+            viewModel.thirdBtnPictureCallback = { [weak self] assetsFileName in
+                self?.thirdBtn.setBackgroundImage(UIImage(named: assetsFileName), for: UIControl.State.normal)
+            }
+            viewModel.fourthBtnPictureCallback = { [weak self] assetsFileName in
+                self?.fourthBtn.setBackgroundImage(UIImage(named: assetsFileName), for: UIControl.State.normal)
+            }
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        firstBtn.setBackgroundImage(#imageLiteral(resourceName: "Backframe"), for: UIControl.State.normal)
-        secondBtn.setBackgroundImage(#imageLiteral(resourceName: "Backframe"), for: UIControl.State.normal)
-        thirdBtn.setBackgroundImage(#imageLiteral(resourceName: "Backframe"), for: UIControl.State.normal)
-        fourthBtn.setBackgroundImage(#imageLiteral(resourceName: "Backframe"), for: UIControl.State.normal)
+        viewModel = GameViewModel()
+        viewModel.startGame()
     }
 }
 
