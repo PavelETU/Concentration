@@ -8,7 +8,7 @@
 
 import Foundation
 
-class GameViewModel {
+struct GameViewModel {
     var firstBtnVisibilityCallback: ((Bool) -> Void)?
     private var firstBtnVisibilityState = true {
         didSet {
@@ -57,26 +57,26 @@ class GameViewModel {
             fourthBtnPictureCallback?(fourthBtnPicture)
         }
     }
-    func startGame() {
+    mutating func startGame() {
         firstBtnPicture = "Backframe"
         secondBtnPicture = "Backframe"
         thirdBtnPicture = "Backframe"
         fourthBtnPicture = "Backframe"
     }
     
-    func onFirstButtonClick() {
+    mutating func onFirstButtonClick() {
         firstBtnPicture = "CherryImage"
     }
     
-    func onSecondButtonClick() {
+    mutating func onSecondButtonClick() {
         secondBtnPicture = "CherryImage"
     }
     
-    func onThirdButtonClick() {
+    mutating func onThirdButtonClick() {
         thirdBtnPicture = "CherryImage"
     }
     
-    func onFourthButtonClick() {
+    mutating func onFourthButtonClick() {
         fourthBtnPicture = "CherryImage"
     }
 }
