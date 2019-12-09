@@ -18,14 +18,28 @@ class ConcentrationTests: XCTestCase {
     }
 
     func testAllCardsTurnedDownInitially() {
-        let expectationToWait = expectation(description: "Initial")
+        var firstButtonTitle: String!
+        var secondButtonTitle: String!
+        var thirdButtonTitle: String!
+        var fourthButtonTitle: String!
         viewModel.firstBtnPictureCallback = { fileName in
-            if (fileName != "Backframe") {
-                expectationToWait.isInverted = true
-            }
-            expectationToWait.fulfill()
+            firstButtonTitle = fileName
         }
+        viewModel.secondBtnPictureCallback = { fileName in
+            secondButtonTitle = fileName
+        }
+        viewModel.thirdBtnPictureCallback = { fileName in
+            thirdButtonTitle = fileName
+        }
+        viewModel.fourthBtnPictureCallback = { fileName in
+            fourthButtonTitle = fileName
+        }
+        
         viewModel.startGame()
-        wait(for: [expectationToWait], timeout: 0.1)
+        
+        XCTAssertTrue(firstButtonTitle == "Backframe")
+        XCTAssertTrue(secondButtonTitle == "Backframe")
+        XCTAssertTrue(thirdButtonTitle == "Backframe")
+        XCTAssertTrue(fourthButtonTitle == "Backframe")
     }
 }
