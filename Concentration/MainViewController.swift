@@ -33,7 +33,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = GameViewModel()
+        viewModel = GameViewModel(cardsRepository: CardsRepositoryImpl())
         viewModel.startGame()
     }
     

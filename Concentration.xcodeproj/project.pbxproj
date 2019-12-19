@@ -14,17 +14,12 @@
 		0A081E98239C3652009A79AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A081E96239C3652009A79AC /* LaunchScreen.storyboard */; };
 		0A081EA3239C3652009A79AC /* ConcentrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A081EA2239C3652009A79AC /* ConcentrationTests.swift */; };
 		0A081EBC239C7282009A79AC /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A081EBB239C7282009A79AC /* GameViewModel.swift */; };
+		0AB62CD423A0018C00C4FCE7 /* CardsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB62CD323A0018C00C4FCE7 /* CardsRepository.swift */; };
+		0AB62CD623A0030400C4FCE7 /* CardsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB62CD523A0030400C4FCE7 /* CardsRepositoryImpl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		0A081E9F239C3652009A79AC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A081E80239C364F009A79AC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0A081E87239C364F009A79AC;
-			remoteInfo = Concentration;
-		};
-		0A081EAA239C3652009A79AC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0A081E80239C364F009A79AC /* Project object */;
 			proxyType = 1;
@@ -44,8 +39,9 @@
 		0A081E9E239C3652009A79AC /* ConcentrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConcentrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A081EA2239C3652009A79AC /* ConcentrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcentrationTests.swift; sourceTree = "<group>"; };
 		0A081EA4239C3652009A79AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0A081EA9239C3652009A79AC /* ConcentrationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConcentrationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A081EBB239C7282009A79AC /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		0AB62CD323A0018C00C4FCE7 /* CardsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsRepository.swift; sourceTree = "<group>"; };
+		0AB62CD523A0030400C4FCE7 /* CardsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsRepositoryImpl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,13 +53,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		0A081E9B239C3652009A79AC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0A081EA6239C3652009A79AC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -87,7 +76,6 @@
 			children = (
 				0A081E88239C364F009A79AC /* Concentration.app */,
 				0A081E9E239C3652009A79AC /* ConcentrationTests.xctest */,
-				0A081EA9239C3652009A79AC /* ConcentrationUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,6 +90,8 @@
 				0A081E96239C3652009A79AC /* LaunchScreen.storyboard */,
 				0A081E99239C3652009A79AC /* Info.plist */,
 				0A081EBB239C7282009A79AC /* GameViewModel.swift */,
+				0AB62CD323A0018C00C4FCE7 /* CardsRepository.swift */,
+				0AB62CD523A0030400C4FCE7 /* CardsRepositoryImpl.swift */,
 			);
 			path = Concentration;
 			sourceTree = "<group>";
@@ -153,24 +143,6 @@
 			productReference = 0A081E9E239C3652009A79AC /* ConcentrationTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		0A081EA8239C3652009A79AC /* ConcentrationUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0A081EB8239C3652009A79AC /* Build configuration list for PBXNativeTarget "ConcentrationUITests" */;
-			buildPhases = (
-				0A081EA5239C3652009A79AC /* Sources */,
-				0A081EA6239C3652009A79AC /* Frameworks */,
-				0A081EA7239C3652009A79AC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				0A081EAB239C3652009A79AC /* PBXTargetDependency */,
-			);
-			name = ConcentrationUITests;
-			productName = ConcentrationUITests;
-			productReference = 0A081EA9239C3652009A79AC /* ConcentrationUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -185,10 +157,6 @@
 						CreatedOnToolsVersion = 11.2.1;
 					};
 					0A081E9D239C3652009A79AC = {
-						CreatedOnToolsVersion = 11.2.1;
-						TestTargetID = 0A081E87239C364F009A79AC;
-					};
-					0A081EA8239C3652009A79AC = {
 						CreatedOnToolsVersion = 11.2.1;
 						TestTargetID = 0A081E87239C364F009A79AC;
 					};
@@ -209,7 +177,6 @@
 			targets = (
 				0A081E87239C364F009A79AC /* Concentration */,
 				0A081E9D239C3652009A79AC /* ConcentrationTests */,
-				0A081EA8239C3652009A79AC /* ConcentrationUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -232,13 +199,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0A081EA7239C3652009A79AC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -247,6 +207,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A081EBC239C7282009A79AC /* GameViewModel.swift in Sources */,
+				0AB62CD623A0030400C4FCE7 /* CardsRepositoryImpl.swift in Sources */,
+				0AB62CD423A0018C00C4FCE7 /* CardsRepository.swift in Sources */,
 				0A081E90239C364F009A79AC /* MainViewController.swift in Sources */,
 				0A081E8C239C364F009A79AC /* AppDelegate.swift in Sources */,
 			);
@@ -260,13 +222,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0A081EA5239C3652009A79AC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -274,11 +229,6 @@
 			isa = PBXTargetDependency;
 			target = 0A081E87239C364F009A79AC /* Concentration */;
 			targetProxy = 0A081E9F239C3652009A79AC /* PBXContainerItemProxy */;
-		};
-		0A081EAB239C3652009A79AC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0A081E87239C364F009A79AC /* Concentration */;
-			targetProxy = 0A081EAA239C3652009A79AC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -459,7 +409,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ConcentrationTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -480,7 +430,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ConcentrationTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -491,44 +441,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Concentration.app/Concentration";
-			};
-			name = Release;
-		};
-		0A081EB9239C3652009A79AC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = ConcentrationUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lonelytrip.wordpress.ConcentrationUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Concentration;
-			};
-			name = Debug;
-		};
-		0A081EBA239C3652009A79AC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = ConcentrationUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lonelytrip.wordpress.ConcentrationUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Concentration;
 			};
 			name = Release;
 		};
@@ -558,15 +470,6 @@
 			buildConfigurations = (
 				0A081EB6239C3652009A79AC /* Debug */,
 				0A081EB7239C3652009A79AC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		0A081EB8239C3652009A79AC /* Build configuration list for PBXNativeTarget "ConcentrationUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0A081EB9239C3652009A79AC /* Debug */,
-				0A081EBA239C3652009A79AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

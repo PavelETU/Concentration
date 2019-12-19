@@ -9,6 +9,12 @@
 import Foundation
 
 struct GameViewModel {
+    private var repo: CardsRepository
+    
+    init(cardsRepository: CardsRepository) {
+        self.repo = cardsRepository
+    }
+    
     var firstBtnVisibilityCallback: ((Bool) -> Void)?
     private var firstBtnVisibilityState = true {
         didSet {
@@ -57,6 +63,9 @@ struct GameViewModel {
             fourthBtnPictureCallback?(fourthBtnPicture)
         }
     }
+    
+    private var openCardsCount = 0
+    
     mutating func startGame() {
         firstBtnPicture = "Backframe"
         secondBtnPicture = "Backframe"
@@ -65,18 +74,19 @@ struct GameViewModel {
     }
     
     mutating func onFirstButtonClick() {
-        firstBtnPicture = "CherryImage"
+        openCardsCount += 1
+        firstBtnPicture = repo.getCardNameForRowAndCol(row: 0, col: 0)
     }
     
     mutating func onSecondButtonClick() {
-        secondBtnPicture = "CherryImage"
+        secondBtnPicture = repo.getCardNameForRowAndCol(row: 0, col: 1)
     }
     
     mutating func onThirdButtonClick() {
-        thirdBtnPicture = "CherryImage"
+        thirdBtnPicture = repo.getCardNameForRowAndCol(row: 1, col: 0)
     }
     
     mutating func onFourthButtonClick() {
-        fourthBtnPicture = "CherryImage"
+        fourthBtnPicture = repo.getCardNameForRowAndCol(row:1, col: 1)
     }
 }
