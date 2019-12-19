@@ -65,6 +65,9 @@ struct GameViewModel {
     }
     
     private var openCardsCount = 0
+    private var imageOfOpenCard = ""
+    private var openCardRow: Int!
+    private var openCardCol: Int!
     
     mutating func startGame() {
         firstBtnPicture = "Backframe"
@@ -75,18 +78,77 @@ struct GameViewModel {
     
     mutating func onFirstButtonClick() {
         openCardsCount += 1
-        firstBtnPicture = repo.getCardNameForRowAndCol(row: 0, col: 0)
+        let imageOfCard = repo.getCardNameForRowAndCol(row: 0, col: 0)
+        firstBtnPicture = imageOfCard
+        if (openCardsCount == 2) {
+            if (repo.getCardNameForRowAndCol(row: openCardRow, col: openCardCol) == imageOfCard) {
+                hideCard(row: openCardRow, col: openCardCol)
+                firstBtnVisibilityState  = false
+            }
+            openCardsCount = 0
+        } else {
+            openCardRow = 0
+            openCardCol = 0
+        }
     }
     
     mutating func onSecondButtonClick() {
-        secondBtnPicture = repo.getCardNameForRowAndCol(row: 0, col: 1)
+        openCardsCount += 1
+        let imageOfCard = repo.getCardNameForRowAndCol(row: 0, col: 1)
+        secondBtnPicture = imageOfCard
+        if (openCardsCount == 2) {
+            if (repo.getCardNameForRowAndCol(row: openCardRow, col: openCardCol) == imageOfCard) {
+                hideCard(row: openCardRow, col: openCardCol)
+                secondBtnVisibilityState  = false
+            }
+            openCardsCount = 0
+        } else {
+           openCardRow = 0
+           openCardCol = 1
+        }
     }
     
     mutating func onThirdButtonClick() {
-        thirdBtnPicture = repo.getCardNameForRowAndCol(row: 1, col: 0)
+        openCardsCount += 1
+        let imageOfCard = repo.getCardNameForRowAndCol(row: 1, col: 0)
+        thirdBtnPicture = imageOfCard
+        if (openCardsCount == 2) {
+            if (repo.getCardNameForRowAndCol(row: openCardRow, col: openCardCol) == imageOfCard) {
+                hideCard(row: openCardRow, col: openCardCol)
+                thirdBtnVisibilityState  = false
+            }
+            openCardsCount = 0
+        } else {
+            openCardRow = 1
+            openCardCol = 0
+        }
     }
     
     mutating func onFourthButtonClick() {
-        fourthBtnPicture = repo.getCardNameForRowAndCol(row:1, col: 1)
+        openCardsCount += 1
+        let imageOfCard = repo.getCardNameForRowAndCol(row: 1, col: 1)
+        fourthBtnPicture = imageOfCard
+        if (openCardsCount == 2) {
+            if (repo.getCardNameForRowAndCol(row: openCardRow, col: openCardCol) == imageOfCard) {
+                hideCard(row: openCardRow, col: openCardCol)
+                fourthBtnVisibilityState  = false
+            }
+            openCardsCount = 0
+        } else {
+            openCardRow = 1
+            openCardCol = 1
+        }
+    }
+    
+    private mutating func hideCard(row: Int, col: Int) {
+        if (row == 0 && col == 0) {
+            firstBtnVisibilityState = false
+        } else if (row == 0 && col == 1) {
+            secondBtnVisibilityState = false
+        } else if (row == 1 && col == 0) {
+            thirdBtnVisibilityState = false
+        } else if (row == 1 && col == 1) {
+            fourthBtnVisibilityState = false
+        }
     }
 }

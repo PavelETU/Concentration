@@ -10,6 +10,10 @@ import Foundation
 
 class CardsRepositoryImpl: CardsRepository {
     func getCardNameForRowAndCol(row: Int, col: Int) -> String {
-        return "CherryImage"
+        if ((row == 0 && col == 0) || (row == 1 && col == 0)) {
+            return "CherryImage"
+        } else {
+            return "Pineapple"
+        }
     }
 }

@@ -72,6 +72,24 @@ class ConcentrationTests: XCTestCase {
     
     func testAfterClickOnTwoSameCardsTheyWouldGetDissapeared() {
         var firstButtonVisibility: Bool!
+        var thirdButtonVisibility: Bool!
+        viewModel.firstBtnVisibilityCallback = { visibility in
+            firstButtonVisibility = visibility
+        }
+        viewModel.thirdBtnVisibilityCallback = { visibility in
+            thirdButtonVisibility = visibility
+        }
+        
+        viewModel.startGame()
+        viewModel.onFirstButtonClick()
+        viewModel.onThirdButtonClick()
+        
+        XCTAssertFalse(firstButtonVisibility)
+        XCTAssertFalse(thirdButtonVisibility)
+    }
+    
+    func testCardsDissapeared() {
+        var firstButtonVisibility: Bool!
         var secondButtonVisibility: Bool!
         var thirdButtonVisibility: Bool!
         var fourthButtonVisibility: Bool!
@@ -91,11 +109,13 @@ class ConcentrationTests: XCTestCase {
         viewModel.startGame()
         viewModel.onFirstButtonClick()
         viewModel.onThirdButtonClick()
+        viewModel.onSecondButtonClick()
+        viewModel.onFourthButtonClick()
         
         XCTAssertFalse(firstButtonVisibility)
+        XCTAssertFalse(secondButtonVisibility)
         XCTAssertFalse(thirdButtonVisibility)
-        XCTAssertTrue(secondButtonVisibility)
-        XCTAssertTrue(fourthButtonVisibility)
+        XCTAssertFalse(fourthButtonVisibility)
     }
 }
 

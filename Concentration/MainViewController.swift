@@ -28,6 +28,18 @@ class MainViewController: UIViewController {
             viewModel.fourthBtnPictureCallback = { [weak self] assetsFileName in
                 self?.fourthBtn.setBackgroundImage(UIImage(named: assetsFileName), for: UIControl.State.normal)
             }
+            viewModel.firstBtnVisibilityCallback = { [weak self] visibility in
+                self?.firstBtn.isHidden = true
+            }
+            viewModel.secondBtnVisibilityCallback = { [weak self] visibility in
+                self?.secondBtn.isHidden = true
+            }
+            viewModel.thirdBtnVisibilityCallback = { [weak self] visibility in
+                self?.thirdBtn.isHidden = true
+            }
+            viewModel.fourthBtnVisibilityCallback = { [weak self] visibility in
+                self?.fourthBtn.isHidden = true
+            }
         }
     }
     
