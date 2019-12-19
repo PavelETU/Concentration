@@ -69,6 +69,34 @@ class ConcentrationTests: XCTestCase {
         XCTAssertTrue(thirdButtonTitle == "Backframe")
         XCTAssertTrue(fourthButtonTitle == "Backframe")
     }
+    
+    func testAfterClickOnTwoSameCardsTheyWouldGetDissapeared() {
+        var firstButtonVisibility: Bool!
+        var secondButtonVisibility: Bool!
+        var thirdButtonVisibility: Bool!
+        var fourthButtonVisibility: Bool!
+        viewModel.firstBtnVisibilityCallback = { visibility in
+            firstButtonVisibility = visibility
+        }
+        viewModel.secondBtnVisibilityCallback = { visibility in
+            secondButtonVisibility = visibility
+        }
+        viewModel.thirdBtnVisibilityCallback = { visibility in
+            thirdButtonVisibility = visibility
+        }
+        viewModel.fourthBtnVisibilityCallback = { visibility in
+            fourthButtonVisibility = visibility
+        }
+        
+        viewModel.startGame()
+        viewModel.onFirstButtonClick()
+        viewModel.onThirdButtonClick()
+        
+        XCTAssertFalse(firstButtonVisibility)
+        XCTAssertFalse(thirdButtonVisibility)
+        XCTAssertTrue(secondButtonVisibility)
+        XCTAssertTrue(fourthButtonVisibility)
+    }
 }
 
 private class CardsRepositoryMock: CardsRepository {
