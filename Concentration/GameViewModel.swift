@@ -8,11 +8,13 @@
 
 import Foundation
 
-struct GameViewModel {
+class GameViewModel {
     private var repo: CardsRepository
+    private var delayProvider: DelayProvider
     
-    init(cardsRepository: CardsRepository) {
+    init(cardsRepository: CardsRepository, delayProvider: DelayProvider) {
         self.repo = cardsRepository
+        self.delayProvider = delayProvider
     }
     
     var firstBtnVisibilityCallback: ((Bool) -> Void)?
@@ -69,21 +71,30 @@ struct GameViewModel {
     private var openCardRow: Int!
     private var openCardCol: Int!
     
-    mutating func startGame() {
+    func startGame() {
         firstBtnPicture = "Backframe"
         secondBtnPicture = "Backframe"
         thirdBtnPicture = "Backframe"
         fourthBtnPicture = "Backframe"
     }
     
-    mutating func onFirstButtonClick() {
+    func onFirstButtonClick() {
         openCardsCount += 1
         let imageOfCard = repo.getCardNameForRowAndCol(row: 0, col: 0)
         firstBtnPicture = imageOfCard
         if (openCardsCount == 2) {
+            if (openCardRow == 0 && openCardCol == 0) {
+                openCardsCount -= 1
+                return
+            }
             if (repo.getCardNameForRowAndCol(row: openCardRow, col: openCardCol) == imageOfCard) {
                 hideCard(row: openCardRow, col: openCardCol)
                 firstBtnVisibilityState  = false
+            } else {
+                setImageForCardWithAnimation(row: openCardRow, col: openCardCol, picture: "Backframe")
+                delayProvider.runFunctionWithDelay(delayBy: 0.7, function: { [weak self] in
+                    self?.firstBtnPicture = "Backframe"
+                })
             }
             openCardsCount = 0
         } else {
@@ -92,14 +103,23 @@ struct GameViewModel {
         }
     }
     
-    mutating func onSecondButtonClick() {
+    func onSecondButtonClick() {
         openCardsCount += 1
         let imageOfCard = repo.getCardNameForRowAndCol(row: 0, col: 1)
         secondBtnPicture = imageOfCard
         if (openCardsCount == 2) {
+            if (openCardRow == 0 && openCardCol == 1) {
+                openCardsCount -= 1
+                return
+            }
             if (repo.getCardNameForRowAndCol(row: openCardRow, col: openCardCol) == imageOfCard) {
                 hideCard(row: openCardRow, col: openCardCol)
                 secondBtnVisibilityState  = false
+            } else {
+                setImageForCardWithAnimation(row: openCardRow, col: openCardCol, picture: "Backframe")
+                delayProvider.runFunctionWithDelay(delayBy: 0.7, function: { [weak self] in
+                    self?.secondBtnPicture = "Backframe"
+                })
             }
             openCardsCount = 0
         } else {
@@ -108,14 +128,23 @@ struct GameViewModel {
         }
     }
     
-    mutating func onThirdButtonClick() {
+    func onThirdButtonClick() {
         openCardsCount += 1
         let imageOfCard = repo.getCardNameForRowAndCol(row: 1, col: 0)
         thirdBtnPicture = imageOfCard
         if (openCardsCount == 2) {
+            if (openCardRow == 1 && openCardCol == 0) {
+                openCardsCount -= 1
+                return
+            }
             if (repo.getCardNameForRowAndCol(row: openCardRow, col: openCardCol) == imageOfCard) {
                 hideCard(row: openCardRow, col: openCardCol)
                 thirdBtnVisibilityState  = false
+            } else {
+                setImageForCardWithAnimation(row: openCardRow, col: openCardCol, picture: "Backframe")
+                delayProvider.runFunctionWithDelay(delayBy: 0.7, function: { [weak self] in
+                    self?.thirdBtnPicture = "Backframe"
+                })
             }
             openCardsCount = 0
         } else {
@@ -124,14 +153,23 @@ struct GameViewModel {
         }
     }
     
-    mutating func onFourthButtonClick() {
+    func onFourthButtonClick() {
         openCardsCount += 1
         let imageOfCard = repo.getCardNameForRowAndCol(row: 1, col: 1)
         fourthBtnPicture = imageOfCard
         if (openCardsCount == 2) {
+            if (openCardRow == 1 && openCardCol == 1) {
+                openCardsCount -= 1
+                return
+            }
             if (repo.getCardNameForRowAndCol(row: openCardRow, col: openCardCol) == imageOfCard) {
                 hideCard(row: openCardRow, col: openCardCol)
                 fourthBtnVisibilityState  = false
+            } else {
+                setImageForCardWithAnimation(row: openCardRow, col: openCardCol, picture: "Backframe")
+                delayProvider.runFunctionWithDelay(delayBy: 0.7, function: { [weak self] in
+                    self?.fourthBtnPicture = "Backframe"
+                })
             }
             openCardsCount = 0
         } else {
@@ -140,7 +178,7 @@ struct GameViewModel {
         }
     }
     
-    private mutating func hideCard(row: Int, col: Int) {
+    private func hideCard(row: Int, col: Int) {
         if (row == 0 && col == 0) {
             firstBtnVisibilityState = false
         } else if (row == 0 && col == 1) {
@@ -150,5 +188,19 @@ struct GameViewModel {
         } else if (row == 1 && col == 1) {
             fourthBtnVisibilityState = false
         }
+    }
+    
+    private func setImageForCardWithAnimation(row: Int, col: Int, picture: String) {
+        delayProvider.runFunctionWithDelay(delayBy: 0.7, function: { [weak self] in
+            if (row == 0 && col == 0) {
+                self?.firstBtnPicture = picture
+            } else if (row == 0 && col == 1) {
+                self?.secondBtnPicture = picture
+            } else if (row == 1 && col == 0) {
+                self?.thirdBtnPicture = picture
+            } else if (row == 1 && col == 1) {
+                self?.fourthBtnPicture = picture
+            }
+        })
     }
 }

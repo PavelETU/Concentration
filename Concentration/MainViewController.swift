@@ -25,27 +25,26 @@ class MainViewController: UIViewController {
             viewModel.thirdBtnPictureCallback = { [weak self] assetsFileName in
                 self?.thirdBtn.setBackgroundImage(UIImage(named: assetsFileName), for: UIControl.State.normal)
             }
-            viewModel.fourthBtnPictureCallback = { [weak self] assetsFileName in
-                self?.fourthBtn.setBackgroundImage(UIImage(named: assetsFileName), for: UIControl.State.normal)
+            viewModel.fourthBtnPictureCallback = { [weak self] assetsFileName in self?.fourthBtn.setBackgroundImage(UIImage(named: assetsFileName), for: UIControl.State.normal)
             }
             viewModel.firstBtnVisibilityCallback = { [weak self] visibility in
-                self?.firstBtn.isHidden = true
+                UIView.transition(with: self!.firstBtn, duration: 1, options: .showHideTransitionViews, animations: { self!.firstBtn.alpha = 0.0 })
             }
             viewModel.secondBtnVisibilityCallback = { [weak self] visibility in
-                self?.secondBtn.isHidden = true
+                UIView.transition(with: self!.secondBtn, duration: 1, options: .showHideTransitionViews, animations: { self!.secondBtn.alpha = 0.0 })
             }
             viewModel.thirdBtnVisibilityCallback = { [weak self] visibility in
-                self?.thirdBtn.isHidden = true
+                UIView.transition(with: self!.thirdBtn, duration: 1, options: .showHideTransitionViews, animations: { self!.thirdBtn.alpha = 0.0 })
             }
             viewModel.fourthBtnVisibilityCallback = { [weak self] visibility in
-                self?.fourthBtn.isHidden = true
+                UIView.transition(with: self!.fourthBtn, duration: 1, options: .showHideTransitionViews, animations: { self!.fourthBtn.alpha = 0.0 })
             }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = GameViewModel(cardsRepository: CardsRepositoryImpl())
+        viewModel = GameViewModel(cardsRepository: CardsRepositoryImpl(), delayProvider: AsyncAfterDelayProvider())
         viewModel.startGame()
     }
     
