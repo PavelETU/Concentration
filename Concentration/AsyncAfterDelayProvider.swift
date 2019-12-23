@@ -9,7 +9,8 @@
 import Foundation
 
 struct AsyncAfterDelayProvider: DelayProvider {
-    func runFunctionWithDelay(delayBy: Float, function: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7, execute: function)
+    func runFunctionWithDelay(delayByMilliseconds: Int, function: @escaping () -> Void) {
+        let dispatchTimeToDelayBy = DispatchTimeInterval.milliseconds(Int(delayByMilliseconds))
+        DispatchQueue.main.asyncAfter(deadline: .now() + dispatchTimeToDelayBy, execute: function)
     }
 }

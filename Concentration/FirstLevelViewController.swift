@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class FirstLevelViewController: UIViewController {
     @IBOutlet weak var firstBtn: UIButton!
     @IBOutlet weak var secondBtn: UIButton!
     @IBOutlet weak var thirdBtn: UIButton!

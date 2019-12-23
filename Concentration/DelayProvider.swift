@@ -9,5 +9,5 @@
 import Foundation
 
 protocol DelayProvider {
-    func runFunctionWithDelay(delayBy: Float, function: @escaping () -> Void)
+    func runFunctionWithDelay(delayByMilliseconds: Int, function: @escaping () -> Void)
 }

@@ -92,7 +92,7 @@ class GameViewModel {
                 firstBtnVisibilityState  = false
             } else {
                 setImageForCardWithAnimation(row: openCardRow, col: openCardCol, picture: "Backframe")
-                delayProvider.runFunctionWithDelay(delayBy: 0.7, function: { [weak self] in
+                delayProvider.runFunctionWithDelay(delayByMilliseconds: 700, function: { [weak self] in
                     self?.firstBtnPicture = "Backframe"
                 })
             }
@@ -117,7 +117,7 @@ class GameViewModel {
                 secondBtnVisibilityState  = false
             } else {
                 setImageForCardWithAnimation(row: openCardRow, col: openCardCol, picture: "Backframe")
-                delayProvider.runFunctionWithDelay(delayBy: 0.7, function: { [weak self] in
+                delayProvider.runFunctionWithDelay(delayByMilliseconds: 700, function: { [weak self] in
                     self?.secondBtnPicture = "Backframe"
                 })
             }
@@ -142,7 +142,7 @@ class GameViewModel {
                 thirdBtnVisibilityState  = false
             } else {
                 setImageForCardWithAnimation(row: openCardRow, col: openCardCol, picture: "Backframe")
-                delayProvider.runFunctionWithDelay(delayBy: 0.7, function: { [weak self] in
+                delayProvider.runFunctionWithDelay(delayByMilliseconds: 700, function: { [weak self] in
                     self?.thirdBtnPicture = "Backframe"
                 })
             }
@@ -167,7 +167,7 @@ class GameViewModel {
                 fourthBtnVisibilityState  = false
             } else {
                 setImageForCardWithAnimation(row: openCardRow, col: openCardCol, picture: "Backframe")
-                delayProvider.runFunctionWithDelay(delayBy: 0.7, function: { [weak self] in
+                delayProvider.runFunctionWithDelay(delayByMilliseconds: 700, function: { [weak self] in
                     self?.fourthBtnPicture = "Backframe"
                 })
             }
@@ -191,7 +191,7 @@ class GameViewModel {
     }
     
     private func setImageForCardWithAnimation(row: Int, col: Int, picture: String) {
-        delayProvider.runFunctionWithDelay(delayBy: 0.7, function: { [weak self] in
+        delayProvider.runFunctionWithDelay(delayByMilliseconds: 700, function: { [weak self] in
             if (row == 0 && col == 0) {
                 self?.firstBtnPicture = picture
             } else if (row == 0 && col == 1) {

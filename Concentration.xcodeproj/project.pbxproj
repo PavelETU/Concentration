@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		0A081E8C239C364F009A79AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A081E8B239C364F009A79AC /* AppDelegate.swift */; };
-		0A081E90239C364F009A79AC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A081E8F239C364F009A79AC /* MainViewController.swift */; };
+		0A081E90239C364F009A79AC /* FirstLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A081E8F239C364F009A79AC /* FirstLevelViewController.swift */; };
 		0A081E93239C364F009A79AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A081E91239C364F009A79AC /* Main.storyboard */; };
 		0A081E95239C3652009A79AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A081E94239C3652009A79AC /* Assets.xcassets */; };
 		0A081E98239C3652009A79AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A081E96239C3652009A79AC /* LaunchScreen.storyboard */; };
 		0A081EA3239C3652009A79AC /* ConcentrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A081EA2239C3652009A79AC /* ConcentrationTests.swift */; };
 		0A081EBC239C7282009A79AC /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A081EBB239C7282009A79AC /* GameViewModel.swift */; };
+		0A2FACE723AF98140033BE14 /* ChooseLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2FACE623AF98140033BE14 /* ChooseLevelViewController.swift */; };
+		0A2FACE923AF9F100033BE14 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2FACE823AF9F100033BE14 /* MainNavigationController.swift */; };
 		0A802D0723ACDE85008EC0C5 /* DelayProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A802D0623ACDE85008EC0C5 /* DelayProvider.swift */; };
 		0A802D0923ACE134008EC0C5 /* AsyncAfterDelayProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A802D0823ACE134008EC0C5 /* AsyncAfterDelayProvider.swift */; };
 		0AB62CD423A0018C00C4FCE7 /* CardsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB62CD323A0018C00C4FCE7 /* CardsRepository.swift */; };
@@ -33,7 +35,7 @@
 /* Begin PBXFileReference section */
 		0A081E88239C364F009A79AC /* Concentration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Concentration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A081E8B239C364F009A79AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0A081E8F239C364F009A79AC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		0A081E8F239C364F009A79AC /* FirstLevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLevelViewController.swift; sourceTree = "<group>"; };
 		0A081E92239C364F009A79AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0A081E94239C3652009A79AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A081E97239C3652009A79AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -42,6 +44,8 @@
 		0A081EA2239C3652009A79AC /* ConcentrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcentrationTests.swift; sourceTree = "<group>"; };
 		0A081EA4239C3652009A79AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A081EBB239C7282009A79AC /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		0A2FACE623AF98140033BE14 /* ChooseLevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseLevelViewController.swift; sourceTree = "<group>"; };
+		0A2FACE823AF9F100033BE14 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		0A802D0623ACDE85008EC0C5 /* DelayProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayProvider.swift; sourceTree = "<group>"; };
 		0A802D0823ACE134008EC0C5 /* AsyncAfterDelayProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncAfterDelayProvider.swift; sourceTree = "<group>"; };
 		0AB62CD323A0018C00C4FCE7 /* CardsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsRepository.swift; sourceTree = "<group>"; };
@@ -88,7 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				0A081E8B239C364F009A79AC /* AppDelegate.swift */,
-				0A081E8F239C364F009A79AC /* MainViewController.swift */,
+				0A081E8F239C364F009A79AC /* FirstLevelViewController.swift */,
 				0A081E91239C364F009A79AC /* Main.storyboard */,
 				0A081E94239C3652009A79AC /* Assets.xcassets */,
 				0A081E96239C3652009A79AC /* LaunchScreen.storyboard */,
@@ -98,6 +102,8 @@
 				0AB62CD523A0030400C4FCE7 /* CardsRepositoryImpl.swift */,
 				0A802D0623ACDE85008EC0C5 /* DelayProvider.swift */,
 				0A802D0823ACE134008EC0C5 /* AsyncAfterDelayProvider.swift */,
+				0A2FACE623AF98140033BE14 /* ChooseLevelViewController.swift */,
+				0A2FACE823AF9F100033BE14 /* MainNavigationController.swift */,
 			);
 			path = Concentration;
 			sourceTree = "<group>";
@@ -212,12 +218,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A2FACE923AF9F100033BE14 /* MainNavigationController.swift in Sources */,
 				0A802D0723ACDE85008EC0C5 /* DelayProvider.swift in Sources */,
 				0A081EBC239C7282009A79AC /* GameViewModel.swift in Sources */,
+				0A2FACE723AF98140033BE14 /* ChooseLevelViewController.swift in Sources */,
 				0AB62CD623A0030400C4FCE7 /* CardsRepositoryImpl.swift in Sources */,
 				0AB62CD423A0018C00C4FCE7 /* CardsRepository.swift in Sources */,
 				0A802D0923ACE134008EC0C5 /* AsyncAfterDelayProvider.swift in Sources */,
-				0A081E90239C364F009A79AC /* MainViewController.swift in Sources */,
+				0A081E90239C364F009A79AC /* FirstLevelViewController.swift in Sources */,
 				0A081E8C239C364F009A79AC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
