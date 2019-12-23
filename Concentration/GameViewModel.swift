@@ -66,6 +66,8 @@ class GameViewModel {
         }
     }
     
+    var dialogCallback: ((String) -> Void)?
+    
     private var openCardsCount = 0
     private var imageOfOpenCard = ""
     private var openCardRow: Int!

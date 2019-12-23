@@ -224,6 +224,21 @@ class ConcentrationTests: XCTestCase {
         XCTAssertTrue(thirdButtonTitle == "Backframe")
         XCTAssertTrue(fourthButtonTitle == "Backframe")
     }
+    
+    func testDisplayWinDialogWhenGameIsOver() {
+        var messageToDisplay: String!
+        viewModel.dialogCallback = { messageToDisplayInDialog in
+            messageToDisplay = messageToDisplayInDialog
+        }
+        
+        viewModel.startGame()
+        viewModel.onFirstButtonClick()
+        viewModel.onThirdButtonClick()
+        viewModel.onSecondButtonClick()
+        viewModel.onFourthButtonClick()
+        
+        XCTAssertTrue(messageToDisplay == "You win! Congrats!")
+    }
 }
 
 private class CardsRepositoryMock: CardsRepository {
@@ -237,7 +252,7 @@ private class CardsRepositoryMock: CardsRepository {
 }
 
 private class DelayProviderMock: DelayProvider {
-    func runFunctionWithDelay(delayBy: Float, function: @escaping () -> Void) {
+    func runFunctionWithDelay(delayByMilliseconds: Int, function: @escaping () -> Void) {
         function()
     }
 }
