@@ -39,6 +39,13 @@ class FirstLevelViewController: UIViewController {
             viewModel.fourthBtnVisibilityCallback = { [weak self] visibility in
                 UIView.transition(with: self!.fourthBtn, duration: 1, options: .showHideTransitionViews, animations: { self!.fourthBtn.alpha = 0.0 })
             }
+            viewModel.dialogCallback = { [weak self] textToShow in
+                let alert = UIAlertController.init(title: "Congrats", message: textToShow, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+                    self?.navigationController?.popViewController(animated: true)
+                    }))
+                self?.present(alert, animated: true, completion: nil)
+            }
         }
     }
     

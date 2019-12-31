@@ -95,7 +95,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k0I-IF-IxI">
                                 <rect key="frame" x="125" y="105" width="70" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.84534893134715028" green="0.44618185085368328" blue="0.71577831914584278" alpha="0.30397227112676056" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="First Level">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>

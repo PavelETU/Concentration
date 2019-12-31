@@ -239,6 +239,51 @@ class ConcentrationTests: XCTestCase {
         
         XCTAssertTrue(messageToDisplay == "You win! Congrats!")
     }
+    
+    func testDisplayWinDialogWhenGameIsOverOtherCombination() {
+        var messageToDisplay: String!
+        viewModel.dialogCallback = { messageToDisplayInDialog in
+            messageToDisplay = messageToDisplayInDialog
+        }
+        
+        viewModel.startGame()
+        viewModel.onSecondButtonClick()
+        viewModel.onFourthButtonClick()
+        viewModel.onFirstButtonClick()
+        viewModel.onThirdButtonClick()
+        
+        XCTAssertTrue(messageToDisplay == "You win! Congrats!")
+    }
+    
+    func testDisplayWinDialogWhenGameIsOver2() {
+        var messageToDisplay: String!
+        viewModel.dialogCallback = { messageToDisplayInDialog in
+            messageToDisplay = messageToDisplayInDialog
+        }
+        
+        viewModel.startGame()
+        viewModel.onThirdButtonClick()
+        viewModel.onFirstButtonClick()
+        viewModel.onFourthButtonClick()
+        viewModel.onSecondButtonClick()
+        
+        XCTAssertTrue(messageToDisplay == "You win! Congrats!")
+    }
+    
+    func testDisplayWinDialogWhenGameIsOverOtherCombination2() {
+        var messageToDisplay: String!
+        viewModel.dialogCallback = { messageToDisplayInDialog in
+            messageToDisplay = messageToDisplayInDialog
+        }
+        
+        viewModel.startGame()
+        viewModel.onFourthButtonClick()
+        viewModel.onSecondButtonClick()
+        viewModel.onThirdButtonClick()
+        viewModel.onFirstButtonClick()
+        
+        XCTAssertTrue(messageToDisplay == "You win! Congrats!")
+    }
 }
 
 private class CardsRepositoryMock: CardsRepository {

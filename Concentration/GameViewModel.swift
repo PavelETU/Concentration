@@ -92,6 +92,7 @@ class GameViewModel {
             if (repo.getCardNameForRowAndCol(row: openCardRow, col: openCardCol) == imageOfCard) {
                 hideCard(row: openCardRow, col: openCardCol)
                 firstBtnVisibilityState  = false
+                checkWinConditionsAndDisplayDialogIfGameIsOver()
             } else {
                 setImageForCardWithAnimation(row: openCardRow, col: openCardCol, picture: "Backframe")
                 delayProvider.runFunctionWithDelay(delayByMilliseconds: 700, function: { [weak self] in
@@ -117,6 +118,7 @@ class GameViewModel {
             if (repo.getCardNameForRowAndCol(row: openCardRow, col: openCardCol) == imageOfCard) {
                 hideCard(row: openCardRow, col: openCardCol)
                 secondBtnVisibilityState  = false
+                checkWinConditionsAndDisplayDialogIfGameIsOver()
             } else {
                 setImageForCardWithAnimation(row: openCardRow, col: openCardCol, picture: "Backframe")
                 delayProvider.runFunctionWithDelay(delayByMilliseconds: 700, function: { [weak self] in
@@ -142,6 +144,7 @@ class GameViewModel {
             if (repo.getCardNameForRowAndCol(row: openCardRow, col: openCardCol) == imageOfCard) {
                 hideCard(row: openCardRow, col: openCardCol)
                 thirdBtnVisibilityState  = false
+                checkWinConditionsAndDisplayDialogIfGameIsOver()
             } else {
                 setImageForCardWithAnimation(row: openCardRow, col: openCardCol, picture: "Backframe")
                 delayProvider.runFunctionWithDelay(delayByMilliseconds: 700, function: { [weak self] in
@@ -167,6 +170,7 @@ class GameViewModel {
             if (repo.getCardNameForRowAndCol(row: openCardRow, col: openCardCol) == imageOfCard) {
                 hideCard(row: openCardRow, col: openCardCol)
                 fourthBtnVisibilityState  = false
+                checkWinConditionsAndDisplayDialogIfGameIsOver()
             } else {
                 setImageForCardWithAnimation(row: openCardRow, col: openCardCol, picture: "Backframe")
                 delayProvider.runFunctionWithDelay(delayByMilliseconds: 700, function: { [weak self] in
@@ -204,5 +208,11 @@ class GameViewModel {
                 self?.fourthBtnPicture = picture
             }
         })
+    }
+    
+    private func checkWinConditionsAndDisplayDialogIfGameIsOver() {
+        if (!firstBtnVisibilityState && !secondBtnVisibilityState && !thirdBtnVisibilityState && !fourthBtnVisibilityState) {
+            dialogCallback?("You win! Congrats!")
+        }
     }
 }
