@@ -12,9 +12,17 @@ class ChooseLevelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
     @IBAction func firstLevelClick(_ sender: Any) {
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let viewControllerForFirstLevel = storyBoard.instantiateViewController(withIdentifier: "FirstLevelViewController")
-        navigationController?.pushViewController(viewControllerForFirstLevel, animated: true)
+        goToTheScreenWithName(identifierForViewController: "FirstLevelViewController")
+    }
+    @IBAction func secondLevelClick(_ sender: Any) {
+        goToTheScreenWithName(identifierForViewController: "SecondLevelViewController")
+    }
+    
+    private func goToTheScreenWithName(identifierForViewController: String) {
+        let storyBoards = UIStoryboard(name: "Main", bundle: nil)
+        let viewControllerForSecondLevel = storyBoards.instantiateViewController(withIdentifier: identifierForViewController)
+        navigationController?.pushViewController(viewControllerForSecondLevel, animated: true)
     }
 }
