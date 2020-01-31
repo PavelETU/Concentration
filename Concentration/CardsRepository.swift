@@ -9,5 +9,5 @@
 import Foundation
 
 protocol CardsRepository {
-    func getCardNameForRowAndCol(row: Int, col: Int) -> String
+    func provideCards(amountOfCards: Int) -> [Card]
 }

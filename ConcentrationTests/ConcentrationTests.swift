@@ -16,213 +16,111 @@ class ConcentrationTests: XCTestCase {
     override func setUp() {
         viewModel = GameViewModel(cardsRepository: CardsRepositoryMock(), delayProvider: DelayProviderMock())
     }
+    
+    func testThereAreFourCardsForFirstLevel() {
+        viewModel.startGameForLevel(level: 1)
+        
+        XCTAssertEqual(viewModel.amountOfCards, 4)
+    }
+    
+    func testThereAreEightCardsForSecondLevel() {
+        viewModel.startGameForLevel(level: 2)
+        
+        XCTAssertEqual(viewModel.amountOfCards, 8)
+    }
+    
+    func testThereAreSixtennCardsForThirdLevel() {
+        viewModel.startGameForLevel(level: 3)
+        
+        XCTAssertEqual(viewModel.amountOfCards, 16)
+    }
 
     func testAllCardsTurnedDownInitially() {
-        var firstButtonTitle: String!
-        var secondButtonTitle: String!
-        var thirdButtonTitle: String!
-        var fourthButtonTitle: String!
-        viewModel.firstBtnPictureCallback = { fileName in
-            firstButtonTitle = fileName
-        }
-        viewModel.secondBtnPictureCallback = { fileName in
-            secondButtonTitle = fileName
-        }
-        viewModel.thirdBtnPictureCallback = { fileName in
-            thirdButtonTitle = fileName
-        }
-        viewModel.fourthBtnPictureCallback = { fileName in
-            fourthButtonTitle = fileName
-        }
+        viewModel.startGameForLevel(level: 1)
         
-        viewModel.startGame()
-        
-        XCTAssertTrue(firstButtonTitle == "Backframe")
-        XCTAssertTrue(secondButtonTitle == "Backframe")
-        XCTAssertTrue(thirdButtonTitle == "Backframe")
-        XCTAssertTrue(fourthButtonTitle == "Backframe")
+        XCTAssertTrue(viewModel.cards[0].imageToShow == "Backframe")
+        XCTAssertTrue(viewModel.cards[1].imageToShow == "Backframe")
+        XCTAssertTrue(viewModel.cards[2].imageToShow == "Backframe")
+        XCTAssertTrue(viewModel.cards[3].imageToShow == "Backframe")
     }
     
     func testFirstClick() {
-        var firstButtonTitle: String!
-        var secondButtonTitle: String!
-        var thirdButtonTitle: String!
-        var fourthButtonTitle: String!
-        viewModel.firstBtnPictureCallback = { fileName in
-            firstButtonTitle = fileName
-        }
-        viewModel.secondBtnPictureCallback = { fileName in
-            secondButtonTitle = fileName
-        }
-        viewModel.thirdBtnPictureCallback = { fileName in
-            thirdButtonTitle = fileName
-        }
-        viewModel.fourthBtnPictureCallback = { fileName in
-            fourthButtonTitle = fileName
-        }
+        viewModel.startGameForLevel(level: 1)
+        viewModel.onCardClick(position: 0)
         
-        viewModel.startGame()
-        viewModel.onFirstButtonClick()
-        
-        XCTAssertTrue(firstButtonTitle == "First")
-        XCTAssertTrue(secondButtonTitle == "Backframe")
-        XCTAssertTrue(thirdButtonTitle == "Backframe")
-        XCTAssertTrue(fourthButtonTitle == "Backframe")
+        XCTAssertTrue(viewModel.cards[0].imageToShow == "first")
+        XCTAssertTrue(viewModel.cards[1].imageToShow == "Backframe")
+        XCTAssertTrue(viewModel.cards[2].imageToShow == "Backframe")
+        XCTAssertTrue(viewModel.cards[3].imageToShow == "Backframe")
     }
     
     func testAfterClickOnTwoSameCardsTheyWouldGetDissapeared() {
-        var firstButtonVisibility: Bool!
-        var thirdButtonVisibility: Bool!
-        viewModel.firstBtnVisibilityCallback = { visibility in
-            firstButtonVisibility = visibility
-        }
-        viewModel.thirdBtnVisibilityCallback = { visibility in
-            thirdButtonVisibility = visibility
-        }
+        viewModel.startGameForLevel(level: 1)
         
-        viewModel.startGame()
-        viewModel.onFirstButtonClick()
-        viewModel.onThirdButtonClick()
+        viewModel.onCardClick(position: 0)
+        viewModel.onCardClick(position: 1)
         
-        XCTAssertFalse(firstButtonVisibility)
-        XCTAssertFalse(thirdButtonVisibility)
+        XCTAssertTrue(viewModel.cards[0].state == .gone)
+        XCTAssertTrue(viewModel.cards[1].state == .gone)
     }
     
     func testAfterClickOnTwoSameCardsTheyWouldGetDissapearedNoMatterHowManyTimesYouClick() {
-        var firstButtonVisibility: Bool!
-        var thirdButtonVisibility: Bool!
-        viewModel.firstBtnVisibilityCallback = { visibility in
-            firstButtonVisibility = visibility
-        }
-        viewModel.thirdBtnVisibilityCallback = { visibility in
-            thirdButtonVisibility = visibility
-        }
+        viewModel.startGameForLevel(level: 1)
         
-        viewModel.startGame()
-        viewModel.onFirstButtonClick()
-        viewModel.onFirstButtonClick()
-        viewModel.onFirstButtonClick()
-        viewModel.onFirstButtonClick()
-        viewModel.onFirstButtonClick()
-        viewModel.onThirdButtonClick()
-        viewModel.onThirdButtonClick()
-        viewModel.onThirdButtonClick()
-        viewModel.onThirdButtonClick()
+        viewModel.onCardClick(position: 0)
+        viewModel.onCardClick(position: 0)
+        viewModel.onCardClick(position: 0)
+        viewModel.onCardClick(position: 0)
+        viewModel.onCardClick(position: 0)
+        viewModel.onCardClick(position: 0)
+        viewModel.onCardClick(position: 0)
+        viewModel.onCardClick(position: 1)
+        viewModel.onCardClick(position: 1)
+        viewModel.onCardClick(position: 1)
+        viewModel.onCardClick(position: 1)
+        viewModel.onCardClick(position: 1)
+        viewModel.onCardClick(position: 1)
+        viewModel.onCardClick(position: 1)
         
-        XCTAssertFalse(firstButtonVisibility)
-        XCTAssertFalse(thirdButtonVisibility)
+        XCTAssertTrue(viewModel.cards[0].state == .gone)
+        XCTAssertTrue(viewModel.cards[1].state == .gone)
     }
     
     func testFirstCardDoesNotOpenTwice() {
-        var firstButtonVisibility: Bool!
-        viewModel.firstBtnVisibilityCallback = { visibility in
-            firstButtonVisibility = visibility
-        }
+        viewModel.startGameForLevel(level: 1)
         
-        viewModel.startGame()
-        viewModel.onFirstButtonClick()
-        viewModel.onFirstButtonClick()
+        viewModel.onCardClick(position: 0)
+        viewModel.onCardClick(position: 0)
         
-        XCTAssertNil(firstButtonVisibility)
-    }
-    
-    func testSecondCardDoesNotOpenTwice() {
-        var secondButtonVisibility: Bool!
-        viewModel.secondBtnVisibilityCallback = { visibility in
-            secondButtonVisibility = visibility
-        }
-        
-        viewModel.startGame()
-        viewModel.onSecondButtonClick()
-        viewModel.onSecondButtonClick()
-        
-        XCTAssertNil(secondButtonVisibility)
-    }
-    
-    func testThirdCardDoesNotOpenTwice() {
-        var thirdButtonVisibility: Bool!
-        viewModel.thirdBtnVisibilityCallback = { visibility in
-            thirdButtonVisibility = visibility
-        }
-        
-        viewModel.startGame()
-        viewModel.onThirdButtonClick()
-        viewModel.onThirdButtonClick()
-        
-        XCTAssertNil(thirdButtonVisibility)
-    }
-    
-    func testFourthCardDoesNotOpenTwice() {
-        var fourthButtonVisibility: Bool!
-        viewModel.fourthBtnVisibilityCallback = { visibility in
-            fourthButtonVisibility = visibility
-        }
-        
-        viewModel.startGame()
-        viewModel.onFourthButtonClick()
-        viewModel.onFourthButtonClick()
-        
-        XCTAssertNil(fourthButtonVisibility)
+        XCTAssertTrue(viewModel.cards[0].state == .showing)
     }
     
     func testAllCardsDissapeared() {
-        var firstButtonVisibility: Bool!
-        var secondButtonVisibility: Bool!
-        var thirdButtonVisibility: Bool!
-        var fourthButtonVisibility: Bool!
-        viewModel.firstBtnVisibilityCallback = { visibility in
-            firstButtonVisibility = visibility
-        }
-        viewModel.secondBtnVisibilityCallback = { visibility in
-            secondButtonVisibility = visibility
-        }
-        viewModel.thirdBtnVisibilityCallback = { visibility in
-            thirdButtonVisibility = visibility
-        }
-        viewModel.fourthBtnVisibilityCallback = { visibility in
-            fourthButtonVisibility = visibility
-        }
+        viewModel.startGameForLevel(level: 1)
         
-        viewModel.startGame()
-        viewModel.onFirstButtonClick()
-        viewModel.onThirdButtonClick()
-        viewModel.onSecondButtonClick()
-        viewModel.onFourthButtonClick()
+        viewModel.onCardClick(position: 0)
+        viewModel.onCardClick(position: 1)
+        viewModel.onCardClick(position: 2)
+        viewModel.onCardClick(position: 3)
         
-        XCTAssertFalse(firstButtonVisibility)
-        XCTAssertFalse(secondButtonVisibility)
-        XCTAssertFalse(thirdButtonVisibility)
-        XCTAssertFalse(fourthButtonVisibility)
+        XCTAssertTrue(viewModel.cards[0].state == .gone)
+        XCTAssertTrue(viewModel.cards[1].state == .gone)
+        XCTAssertTrue(viewModel.cards[2].state == .gone)
+        XCTAssertTrue(viewModel.cards[3].state == .gone)
     }
     
-    func testCardsGoToInitialStateWhenAreNotTheSame() {
-        var firstButtonTitle: String!
-        var secondButtonTitle: String!
-        var thirdButtonTitle: String!
-        var fourthButtonTitle: String!
-        viewModel.firstBtnPictureCallback = { fileName in
-            firstButtonTitle = fileName
-        }
-        viewModel.secondBtnPictureCallback = { fileName in
-            secondButtonTitle = fileName
-        }
-        viewModel.thirdBtnPictureCallback = { fileName in
-            thirdButtonTitle = fileName
-        }
-        viewModel.fourthBtnPictureCallback = { fileName in
-            fourthButtonTitle = fileName
-        }
+    func testCardsGoToInitialStateWhenTheyAreNotTheSame() {
+        viewModel.startGameForLevel(level: 1)
         
-        viewModel.startGame()
-        viewModel.onFirstButtonClick()
-        viewModel.onSecondButtonClick()
-        viewModel.onThirdButtonClick()
-        viewModel.onFourthButtonClick()
+        viewModel.onCardClick(position: 0)
+        viewModel.onCardClick(position: 2)
+        viewModel.onCardClick(position: 1)
+        viewModel.onCardClick(position: 3)
         
-        XCTAssertTrue(firstButtonTitle == "Backframe")
-        XCTAssertTrue(secondButtonTitle == "Backframe")
-        XCTAssertTrue(thirdButtonTitle == "Backframe")
-        XCTAssertTrue(fourthButtonTitle == "Backframe")
+        XCTAssertTrue(viewModel.cards[0].imageToShow == "Backframe")
+        XCTAssertTrue(viewModel.cards[1].imageToShow == "Backframe")
+        XCTAssertTrue(viewModel.cards[2].imageToShow == "Backframe")
+        XCTAssertTrue(viewModel.cards[3].imageToShow == "Backframe")
     }
     
     func testDisplayWinDialogWhenGameIsOver() {
@@ -230,12 +128,12 @@ class ConcentrationTests: XCTestCase {
         viewModel.dialogCallback = { messageToDisplayInDialog in
             messageToDisplay = messageToDisplayInDialog
         }
+        viewModel.startGameForLevel(level: 1)
         
-        viewModel.startGame()
-        viewModel.onFirstButtonClick()
-        viewModel.onThirdButtonClick()
-        viewModel.onSecondButtonClick()
-        viewModel.onFourthButtonClick()
+        viewModel.onCardClick(position: 0)
+        viewModel.onCardClick(position: 1)
+        viewModel.onCardClick(position: 2)
+        viewModel.onCardClick(position: 3)
         
         XCTAssertTrue(messageToDisplay == "You win! Congrats!")
     }
@@ -245,12 +143,12 @@ class ConcentrationTests: XCTestCase {
         viewModel.dialogCallback = { messageToDisplayInDialog in
             messageToDisplay = messageToDisplayInDialog
         }
+        viewModel.startGameForLevel(level: 1)
         
-        viewModel.startGame()
-        viewModel.onSecondButtonClick()
-        viewModel.onFourthButtonClick()
-        viewModel.onFirstButtonClick()
-        viewModel.onThirdButtonClick()
+        viewModel.onCardClick(position: 2)
+        viewModel.onCardClick(position: 3)
+        viewModel.onCardClick(position: 0)
+        viewModel.onCardClick(position: 1)
         
         XCTAssertTrue(messageToDisplay == "You win! Congrats!")
     }
@@ -260,12 +158,12 @@ class ConcentrationTests: XCTestCase {
         viewModel.dialogCallback = { messageToDisplayInDialog in
             messageToDisplay = messageToDisplayInDialog
         }
+        viewModel.startGameForLevel(level: 1)
         
-        viewModel.startGame()
-        viewModel.onThirdButtonClick()
-        viewModel.onFirstButtonClick()
-        viewModel.onFourthButtonClick()
-        viewModel.onSecondButtonClick()
+        viewModel.onCardClick(position: 1)
+        viewModel.onCardClick(position: 0)
+        viewModel.onCardClick(position: 3)
+        viewModel.onCardClick(position: 2)
         
         XCTAssertTrue(messageToDisplay == "You win! Congrats!")
     }
@@ -275,24 +173,25 @@ class ConcentrationTests: XCTestCase {
         viewModel.dialogCallback = { messageToDisplayInDialog in
             messageToDisplay = messageToDisplayInDialog
         }
+        viewModel.startGameForLevel(level: 1)
         
-        viewModel.startGame()
-        viewModel.onFourthButtonClick()
-        viewModel.onSecondButtonClick()
-        viewModel.onThirdButtonClick()
-        viewModel.onFirstButtonClick()
+        viewModel.onCardClick(position: 3)
+        viewModel.onCardClick(position: 2)
+        viewModel.onCardClick(position: 1)
+        viewModel.onCardClick(position: 0)
         
         XCTAssertTrue(messageToDisplay == "You win! Congrats!")
     }
 }
 
 private class CardsRepositoryMock: CardsRepository {
-    func getCardNameForRowAndCol(row: Int, col: Int) -> String {
-        if ((row == 0 && col == 0) || (row == 1 && col == 0)) {
-            return "First"
-        } else {
-            return "Second"
-        }
+    func provideCards(amountOfCards: Int) -> [Card] {
+        var cards = [Card]()
+        cards.append(Card(backgroundImage: "first"))
+        cards.append(Card(backgroundImage: "first"))
+        cards.append(Card(backgroundImage: "second"))
+        cards.append(Card(backgroundImage: "second"))
+        return cards
     }
 }
 

@@ -9,209 +9,80 @@
 import Foundation
 
 class GameViewModel {
-    private var repo: CardsRepository
-    private var delayProvider: DelayProvider
-    
     init(cardsRepository: CardsRepository, delayProvider: DelayProvider) {
         self.repo = cardsRepository
         self.delayProvider = delayProvider
     }
     
-    var firstBtnVisibilityCallback: ((Bool) -> Void)?
-    private var firstBtnVisibilityState = true {
-        didSet {
-            firstBtnVisibilityCallback?(firstBtnVisibilityState)
-        }
-    }
-    var secondBtnVisibilityCallback: ((Bool) -> Void)?
-    private var secondBtnVisibilityState = true {
-        didSet {
-            secondBtnVisibilityCallback?(secondBtnVisibilityState)
-        }
-    }
-    var thirdBtnVisibilityCallback: ((Bool) -> Void)?
-    private var thirdBtnVisibilityState = true {
-        didSet {
-            thirdBtnVisibilityCallback?(thirdBtnVisibilityState)
-        }
-    }
-    var fourthBtnVisibilityCallback: ((Bool) -> Void)?
-    private var fourthBtnVisibilityState = true {
-        didSet {
-            fourthBtnVisibilityCallback?(fourthBtnVisibilityState)
-        }
-    }
-    var firstBtnPictureCallback: ((String) -> Void)?
-    private var firstBtnPicture = "" {
-        didSet {
-            firstBtnPictureCallback?(firstBtnPicture)
-        }
-    }
-    var secondBtnPictureCallback: ((String) -> Void)?
-    private var secondBtnPicture = "" {
-        didSet {
-            secondBtnPictureCallback?(secondBtnPicture)
-        }
-    }
-    var thirdBtnPictureCallback: ((String) -> Void)?
-    private var thirdBtnPicture = "" {
-        didSet {
-            thirdBtnPictureCallback?(thirdBtnPicture)
-        }
-    }
-    var fourthBtnPictureCallback: ((String) -> Void)?
-    private var fourthBtnPicture = "" {
-        didSet {
-            fourthBtnPictureCallback?(fourthBtnPicture)
-        }
-    }
-    
+    var cards: [Card]!
+    var cardUpdateCallback: ((Int) -> Void)?
     var dialogCallback: ((String) -> Void)?
+    var amountOfCards: Int!
     
-    private var openCardsCount = 0
+    private var repo: CardsRepository
+    private var delayProvider: DelayProvider
+    private var openedCardsCount = 0
     private var imageOfOpenCard = ""
-    private var openCardRow: Int!
-    private var openCardCol: Int!
+    private var openedCardNumber: Int!
     
-    func startGame() {
-        firstBtnPicture = "Backframe"
-        secondBtnPicture = "Backframe"
-        thirdBtnPicture = "Backframe"
-        fourthBtnPicture = "Backframe"
+    func startGameForLevel(level: Int) {
+        switch level {
+        case 1: amountOfCards = 4
+        case 2: amountOfCards = 8
+        case 3: amountOfCards = 16
+        default: amountOfCards = 4
+        }
+        cards = repo.provideCards(amountOfCards: amountOfCards)
+        
     }
     
-    func onFirstButtonClick() {
-        openCardsCount += 1
-        let imageOfCard = repo.getCardNameForRowAndCol(row: 0, col: 0)
-        firstBtnPicture = imageOfCard
-        if (openCardsCount == 2) {
-            if (openCardRow == 0 && openCardCol == 0) {
-                openCardsCount -= 1
+    func onCardClick(position: Int) {
+        openedCardsCount += 1
+        let imageOfCard = cards[position].backgroundImage
+        if (openedCardsCount == 2) {
+            if (openedCardNumber == position) {
+                openedCardsCount -= 1
                 return
             }
-            if (repo.getCardNameForRowAndCol(row: openCardRow, col: openCardCol) == imageOfCard) {
-                hideCard(row: openCardRow, col: openCardCol)
-                firstBtnVisibilityState  = false
+            cards[position].imageToShow = imageOfCard!
+            cardUpdateCallback?(position)
+            if (cards[openedCardNumber].backgroundImage == imageOfCard) {
+                hideCard(position: position)
+                hideCard(position: openedCardNumber)
                 checkWinConditionsAndDisplayDialogIfGameIsOver()
             } else {
-                setImageForCardWithAnimation(row: openCardRow, col: openCardCol, picture: "Backframe")
-                delayProvider.runFunctionWithDelay(delayByMilliseconds: 700, function: { [weak self] in
-                    self?.firstBtnPicture = "Backframe"
-                })
+                setImageForCardWithAnimation(position: openedCardNumber, picture: "Backframe")
+                setImageForCardWithAnimation(position: position, picture: "Backframe")
             }
-            openCardsCount = 0
+            openedCardsCount = 0
         } else {
-            openCardRow = 0
-            openCardCol = 0
+            openedCardNumber = position
+            cards[position].imageToShow = imageOfCard!
+            cardUpdateCallback?(position)
         }
     }
     
-    func onSecondButtonClick() {
-        openCardsCount += 1
-        let imageOfCard = repo.getCardNameForRowAndCol(row: 0, col: 1)
-        secondBtnPicture = imageOfCard
-        if (openCardsCount == 2) {
-            if (openCardRow == 0 && openCardCol == 1) {
-                openCardsCount -= 1
-                return
-            }
-            if (repo.getCardNameForRowAndCol(row: openCardRow, col: openCardCol) == imageOfCard) {
-                hideCard(row: openCardRow, col: openCardCol)
-                secondBtnVisibilityState  = false
-                checkWinConditionsAndDisplayDialogIfGameIsOver()
-            } else {
-                setImageForCardWithAnimation(row: openCardRow, col: openCardCol, picture: "Backframe")
-                delayProvider.runFunctionWithDelay(delayByMilliseconds: 700, function: { [weak self] in
-                    self?.secondBtnPicture = "Backframe"
-                })
-            }
-            openCardsCount = 0
-        } else {
-           openCardRow = 0
-           openCardCol = 1
-        }
+    private func hideCard(position: Int) {
+        cards[position].state = .gone
+        cardUpdateCallback?(position)
     }
     
-    func onThirdButtonClick() {
-        openCardsCount += 1
-        let imageOfCard = repo.getCardNameForRowAndCol(row: 1, col: 0)
-        thirdBtnPicture = imageOfCard
-        if (openCardsCount == 2) {
-            if (openCardRow == 1 && openCardCol == 0) {
-                openCardsCount -= 1
-                return
-            }
-            if (repo.getCardNameForRowAndCol(row: openCardRow, col: openCardCol) == imageOfCard) {
-                hideCard(row: openCardRow, col: openCardCol)
-                thirdBtnVisibilityState  = false
-                checkWinConditionsAndDisplayDialogIfGameIsOver()
-            } else {
-                setImageForCardWithAnimation(row: openCardRow, col: openCardCol, picture: "Backframe")
-                delayProvider.runFunctionWithDelay(delayByMilliseconds: 700, function: { [weak self] in
-                    self?.thirdBtnPicture = "Backframe"
-                })
-            }
-            openCardsCount = 0
-        } else {
-            openCardRow = 1
-            openCardCol = 0
-        }
-    }
-    
-    func onFourthButtonClick() {
-        openCardsCount += 1
-        let imageOfCard = repo.getCardNameForRowAndCol(row: 1, col: 1)
-        fourthBtnPicture = imageOfCard
-        if (openCardsCount == 2) {
-            if (openCardRow == 1 && openCardCol == 1) {
-                openCardsCount -= 1
-                return
-            }
-            if (repo.getCardNameForRowAndCol(row: openCardRow, col: openCardCol) == imageOfCard) {
-                hideCard(row: openCardRow, col: openCardCol)
-                fourthBtnVisibilityState  = false
-                checkWinConditionsAndDisplayDialogIfGameIsOver()
-            } else {
-                setImageForCardWithAnimation(row: openCardRow, col: openCardCol, picture: "Backframe")
-                delayProvider.runFunctionWithDelay(delayByMilliseconds: 700, function: { [weak self] in
-                    self?.fourthBtnPicture = "Backframe"
-                })
-            }
-            openCardsCount = 0
-        } else {
-            openCardRow = 1
-            openCardCol = 1
-        }
-    }
-    
-    private func hideCard(row: Int, col: Int) {
-        if (row == 0 && col == 0) {
-            firstBtnVisibilityState = false
-        } else if (row == 0 && col == 1) {
-            secondBtnVisibilityState = false
-        } else if (row == 1 && col == 0) {
-            thirdBtnVisibilityState = false
-        } else if (row == 1 && col == 1) {
-            fourthBtnVisibilityState = false
-        }
-    }
-    
-    private func setImageForCardWithAnimation(row: Int, col: Int, picture: String) {
+    private func setImageForCardWithAnimation(position: Int, picture: String) {
         delayProvider.runFunctionWithDelay(delayByMilliseconds: 700, function: { [weak self] in
-            if (row == 0 && col == 0) {
-                self?.firstBtnPicture = picture
-            } else if (row == 0 && col == 1) {
-                self?.secondBtnPicture = picture
-            } else if (row == 1 && col == 0) {
-                self?.thirdBtnPicture = picture
-            } else if (row == 1 && col == 1) {
-                self?.fourthBtnPicture = picture
-            }
+            self?.cards[position].imageToShow = picture
+            self?.cardUpdateCallback?(position)
         })
     }
     
     private func checkWinConditionsAndDisplayDialogIfGameIsOver() {
-        if (!firstBtnVisibilityState && !secondBtnVisibilityState && !thirdBtnVisibilityState && !fourthBtnVisibilityState) {
+        var gameWon = true
+        for card in cards {
+            if (card.state == .showing) {
+                gameWon = false
+                break
+            }
+        }
+        if (gameWon) {
             dialogCallback?("You win! Congrats!")
         }
     }

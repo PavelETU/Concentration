@@ -9,11 +9,42 @@
 import Foundation
 
 class CardsRepositoryImpl: CardsRepository {
-    func getCardNameForRowAndCol(row: Int, col: Int) -> String {
-        if ((row == 0 && col == 0) || (row == 1 && col == 0)) {
-            return "CherryImage"
-        } else {
-            return "Pineapple"
+    func provideCards(amountOfCards: Int) -> [Card] {
+        var cards = [Card]()
+        if (amountOfCards == 4) {
+            cards.append(Card(backgroundImage: "Pineapple"))
+            cards.append(Card(backgroundImage: "Pineapple"))
+            cards.append(Card(backgroundImage: "Cherry"))
+            cards.append(Card(backgroundImage: "Cherry"))
         }
+        if (amountOfCards == 8) {
+            cards.append(Card(backgroundImage: "Pineapple"))
+            cards.append(Card(backgroundImage: "Pineapple"))
+            cards.append(Card(backgroundImage: "Cherry"))
+            cards.append(Card(backgroundImage: "Cherry"))
+            cards.append(Card(backgroundImage: "Pineapple"))
+            cards.append(Card(backgroundImage: "Pineapple"))
+            cards.append(Card(backgroundImage: "Cherry"))
+            cards.append(Card(backgroundImage: "Cherry"))
+        }
+        if (amountOfCards == 16) {
+            cards.append(Card(backgroundImage: "Pineapple"))
+            cards.append(Card(backgroundImage: "Pineapple"))
+            cards.append(Card(backgroundImage: "Cherry"))
+            cards.append(Card(backgroundImage: "Cherry"))
+            cards.append(Card(backgroundImage: "Pineapple"))
+            cards.append(Card(backgroundImage: "Pineapple"))
+            cards.append(Card(backgroundImage: "Cherry"))
+            cards.append(Card(backgroundImage: "Cherry"))
+            cards.append(Card(backgroundImage: "Pineapple"))
+            cards.append(Card(backgroundImage: "Pineapple"))
+            cards.append(Card(backgroundImage: "Cherry"))
+            cards.append(Card(backgroundImage: "Cherry"))
+            cards.append(Card(backgroundImage: "Pineapple"))
+            cards.append(Card(backgroundImage: "Pineapple"))
+            cards.append(Card(backgroundImage: "Cherry"))
+            cards.append(Card(backgroundImage: "Cherry"))
+        }
+        return cards
     }
 }
