@@ -9,20 +9,35 @@
 import UIKit
 
 class ChooseLevelViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    @IBAction func firstLevelClick(_ sender: Any) {
-        goToTheScreenWithName(identifierForViewController: "FirstLevelViewController")
-    }
-    @IBAction func secondLevelClick(_ sender: Any) {
-        goToTheScreenWithName(identifierForViewController: "SecondLevelViewController")
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
-    private func goToTheScreenWithName(identifierForViewController: String) {
+    @IBAction func firstLevelClick(_ sender: Any) {
         let storyBoards = UIStoryboard(name: "Main", bundle: nil)
-        let viewControllerForSecondLevel = storyBoards.instantiateViewController(withIdentifier: identifierForViewController)
+        let viewControllerForSecondLevel = storyBoards.instantiateViewController(withIdentifier: "FirstLevelViewController")
         navigationController?.pushViewController(viewControllerForSecondLevel, animated: true)
+    }
+    
+    @IBAction func secondLevelClick(_ sender: Any) {
+        goToTheLevel(level: 2, color: .brown)
+    }
+    
+    @IBAction func thirdLevelClick(_ sender: Any) {
+        goToTheLevel(level: 3)
+    }
+    
+    private func goToTheLevel(level: Int, color: UIColor = .darkGray) {
+        let storyBoards = UIStoryboard(name: "Main", bundle: nil)
+        let gameViewController = storyBoards.instantiateViewController(withIdentifier: "GeneralGameViewController") as! GeneralGameViewController
+        gameViewController.level = level
+        gameViewController.backgroundColor = color
+        navigationController?.pushViewController(gameViewController, animated: true)
     }
 }

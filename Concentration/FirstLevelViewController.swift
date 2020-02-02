@@ -42,6 +42,8 @@ class FirstLevelViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.navigationBar.barTintColor = .darkGray
         viewModel = GameViewModel(cardsRepository: CardsRepositoryImpl(), delayProvider: AsyncAfterDelayProvider())
         viewModel.startGameForLevel(level: 1)
         firstBtn.setBackgroundImage(UIImage(named: viewModel.cards[0].imageToShow), for: UIControl.State.normal)

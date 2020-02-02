@@ -8,9 +8,11 @@
 
 import UIKit
 
-class SecondLevelViewController: UIViewController, UICollectionViewDelegateFlowLayout {
+class GeneralGameViewController: UIViewController, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    var level: Int!
+    var backgroundColor: UIColor!
     private let identifier = "cell"
     private var gameViewModel: GameViewModel! {
         didSet {
@@ -23,9 +25,11 @@ class SecondLevelViewController: UIViewController, UICollectionViewDelegateFlowL
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.navigationBar.barTintColor = .darkGray
+        view.backgroundColor = backgroundColor
         gameViewModel = GameViewModel(cardsRepository: CardsRepositoryImpl(), delayProvider: AsyncAfterDelayProvider())
-        
-        gameViewModel.startGameForLevel(level: 2)
+        gameViewModel.startGameForLevel(level: level)
         dataSource = GameCollectionViewDataSource(gameViewModel: gameViewModel)
         collectionView.delegate = self
         collectionView.dataSource = dataSource
@@ -40,7 +44,7 @@ class SecondLevelViewController: UIViewController, UICollectionViewDelegateFlowL
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 150, height: 150)
+        return CGSize(width: 100, height: 150)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

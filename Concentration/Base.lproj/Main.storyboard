@@ -56,7 +56,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="CdC-be-RwP" secondAttribute="trailing" constant="20" id="AXL-3d-UgA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="CdC-be-RwP" secondAttribute="bottom" constant="20" id="AxN-Jz-81Y"/>
@@ -95,7 +95,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k0I-IF-IxI">
                                 <rect key="frame" x="125" y="105" width="70" height="30"/>
-                                <color key="backgroundColor" red="0.84534893134715028" green="0.44618185085368328" blue="0.71577831914584278" alpha="0.30397227112676056" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.32369780539999998" green="0.1063579395" blue="0.574860394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="First Level">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -113,6 +113,16 @@
                                     <action selector="secondLevelClick:" destination="zUC-9u-C9k" eventType="touchUpInside" id="ZZy-wA-e0R"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2i5-hc-8Ly" userLabel="Third Level">
+                                <rect key="frame" x="122" y="205" width="76" height="30"/>
+                                <color key="backgroundColor" red="0.089004822075366974" green="0.4320562481880188" blue="0.14331033825874329" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Third Level">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="thirdLevelClick:" destination="zUC-9u-C9k" eventType="touchUpInside" id="VGH-CW-EJc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -121,7 +131,9 @@
                             <constraint firstItem="EBt-PC-3B1" firstAttribute="centerX" secondItem="lxB-0P-5cz" secondAttribute="centerX" id="UL4-0O-xjr"/>
                             <constraint firstItem="k0I-IF-IxI" firstAttribute="centerX" secondItem="lxB-0P-5cz" secondAttribute="centerX" id="Uv0-6f-PZV"/>
                             <constraint firstItem="EBt-PC-3B1" firstAttribute="top" secondItem="lxB-0P-5cz" secondAttribute="top" constant="20" id="VMo-eS-egU"/>
+                            <constraint firstItem="2i5-hc-8Ly" firstAttribute="top" secondItem="QRQ-sB-G2i" secondAttribute="bottom" constant="20" id="dZN-6X-MFh"/>
                             <constraint firstItem="QRQ-sB-G2i" firstAttribute="centerX" secondItem="lxB-0P-5cz" secondAttribute="centerX" id="ega-p0-c7L"/>
+                            <constraint firstItem="2i5-hc-8Ly" firstAttribute="centerX" secondItem="lxB-0P-5cz" secondAttribute="centerX" id="qT7-aV-AET"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lxB-0P-5cz"/>
                     </view>
@@ -131,18 +143,18 @@
             </objects>
             <point key="canvasLocation" x="953" y="134"/>
         </scene>
-        <!--Second Level View Controller-->
+        <!--General Game View Controller-->
         <scene sceneID="mmE-u8-w2P">
             <objects>
-                <viewController storyboardIdentifier="SecondLevelViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MKx-29-FlM" customClass="SecondLevelViewController" customModule="Concentration" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GeneralGameViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MKx-29-FlM" customClass="GeneralGameViewController" customModule="Concentration" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zie-Mo-hM7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hfG-zU-EwU">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hfG-zU-EwU">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="ZDC-UJ-s50">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" sectionInsetReference="safeArea" id="ZDC-UJ-s50">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -156,7 +168,7 @@
                             <constraint firstItem="hfG-zU-EwU" firstAttribute="width" secondItem="1vg-v2-hPK" secondAttribute="width" id="GNn-0R-dMQ"/>
                             <constraint firstItem="hfG-zU-EwU" firstAttribute="height" secondItem="1vg-v2-hPK" secondAttribute="height" id="WmR-7w-HAe"/>
                             <constraint firstItem="hfG-zU-EwU" firstAttribute="leading" secondItem="1vg-v2-hPK" secondAttribute="leading" id="ZMm-ud-w0r"/>
-                            <constraint firstItem="hfG-zU-EwU" firstAttribute="top" secondItem="1vg-v2-hPK" secondAttribute="top" id="jqL-ln-Gqu"/>
+                            <constraint firstItem="hfG-zU-EwU" firstAttribute="top" secondItem="zie-Mo-hM7" secondAttribute="top" id="jqL-ln-Gqu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1vg-v2-hPK"/>
                     </view>
