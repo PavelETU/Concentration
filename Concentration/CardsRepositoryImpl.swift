@@ -9,41 +9,19 @@
 import Foundation
 
 class CardsRepositoryImpl: CardsRepository {
+    
+    var pictures = ["Pineapple", "Cherry", "Apple", "Avocado", "Broccoli", "Coconut", "Grape", "Lemon"]
+    
     func provideCards(amountOfCards: Int) -> [Card] {
         var cards = [Card]()
-        if (amountOfCards == 4) {
-            cards.append(Card(backgroundImage: "Pineapple"))
-            cards.append(Card(backgroundImage: "Pineapple"))
-            cards.append(Card(backgroundImage: "Cherry"))
-            cards.append(Card(backgroundImage: "Cherry"))
+        var picturesToUse = [String]()
+        for _ in 0..<amountOfCards/2 {
+            let valudeToAdd = pictures.remove(at: Int.random(in: 0..<pictures.count))
+            picturesToUse.append(valudeToAdd)
+            picturesToUse.append(valudeToAdd)
         }
-        if (amountOfCards == 8) {
-            cards.append(Card(backgroundImage: "Pineapple"))
-            cards.append(Card(backgroundImage: "Pineapple"))
-            cards.append(Card(backgroundImage: "Cherry"))
-            cards.append(Card(backgroundImage: "Cherry"))
-            cards.append(Card(backgroundImage: "Pineapple"))
-            cards.append(Card(backgroundImage: "Pineapple"))
-            cards.append(Card(backgroundImage: "Cherry"))
-            cards.append(Card(backgroundImage: "Cherry"))
-        }
-        if (amountOfCards == 16) {
-            cards.append(Card(backgroundImage: "Pineapple"))
-            cards.append(Card(backgroundImage: "Pineapple"))
-            cards.append(Card(backgroundImage: "Cherry"))
-            cards.append(Card(backgroundImage: "Cherry"))
-            cards.append(Card(backgroundImage: "Pineapple"))
-            cards.append(Card(backgroundImage: "Pineapple"))
-            cards.append(Card(backgroundImage: "Cherry"))
-            cards.append(Card(backgroundImage: "Cherry"))
-            cards.append(Card(backgroundImage: "Pineapple"))
-            cards.append(Card(backgroundImage: "Pineapple"))
-            cards.append(Card(backgroundImage: "Cherry"))
-            cards.append(Card(backgroundImage: "Cherry"))
-            cards.append(Card(backgroundImage: "Pineapple"))
-            cards.append(Card(backgroundImage: "Pineapple"))
-            cards.append(Card(backgroundImage: "Cherry"))
-            cards.append(Card(backgroundImage: "Cherry"))
+        for _ in 0..<amountOfCards {
+            cards.append(Card(backgroundImage: picturesToUse.remove(at: Int.random(in: 0..<picturesToUse.count))))
         }
         return cards
     }
